@@ -1,29 +1,20 @@
+const { resolve } = require("path");
+
 module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
-  extends: [
-    'airbnb-base',
-  ],
-  parser: '@typescript-eslint/parser',
+  extends: ["airbnb-base-typescript", "prettier", "plugin:import/typescript"],
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    project: resolve(__dirname, "./tsconfig.json"),
+    sourceType: "module",
   },
-  plugins: [
-    '@typescript-eslint',
-  ],
+  plugins: ["prettier", "@typescript-eslint", "import"],
   rules: {
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
+    "prettier/prettier": ["error"],
+    "import/no-named-default": "off",
   },
 };
